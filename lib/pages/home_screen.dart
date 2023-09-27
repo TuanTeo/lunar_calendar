@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lunar_calendar/router.dart' as router;
 
 class HomeScreen extends StatefulWidget {
@@ -18,17 +19,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Lunar Calendar"),
+        title: Text(AppLocalizations.of(context).homeTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.calendar_month),
-            tooltip: 'Today',
+            tooltip: AppLocalizations.of(context).todayActionDescription,
             onPressed: () {
             },
           ),
           IconButton(
             icon: const Icon(Icons.settings),
-            tooltip: 'Setting',
+            tooltip: AppLocalizations.of(context).settingActionDescription,
             onPressed: () {
               Navigator.pushNamed(context, router.settingScreen);
             },
