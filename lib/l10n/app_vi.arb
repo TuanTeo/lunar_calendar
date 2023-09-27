@@ -2,5 +2,14 @@
   "homeTitle": "Trang chủ",
   "settingTitle": "Cài đặt",
   "todayActionDescription": "Hôm nay",
-  "settingActionDescription": "Cài đặt"
+  "settingActionDescription": "Cài đặt",
+  "demoData": "Data + {value}",
+  "@demoData": {
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "Bob"
+      }
+    }
+  }
 }

@@ -36,9 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: Center(
-          child: Text("Home screen data"),
+          child: Text(AppLocalizations.of(context).demoData((30 / 4).toString())),
         ),
       ),
     );

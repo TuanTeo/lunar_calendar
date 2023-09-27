@@ -2,5 +2,14 @@
   "homeTitle": "Home",
   "settingTitle": "Setting",
   "todayActionDescription": "Today",
-  "settingActionDescription": "Setting"
+  "settingActionDescription": "Setting",
+  "demoData": "Data + {value}",
+  "@demoData": {
+    "placeholders": {
+      "value": {
+        "type": "String",
+      "example": "Bob"
+      }
+    }
+  }
 }
