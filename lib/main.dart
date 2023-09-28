@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lunar_calendar/router.dart' as router;
+import 'package:lunar_calendar/themes/calendar_theme_data.dart';
 import 'pages/home_screen.dart';
 import 'pages/setting_screen.dart';
 
@@ -19,12 +20,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const LunarCalendarApp(),
+      /* Todo Cấu hình theme sáng tối theo system */
+      // theme: CalendarThemeData.lightThemeData,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -35,24 +32,11 @@ class MyApp extends StatelessWidget {
         Locale('en'), // English
         Locale('vi') // Vietnamese
       ],
-    );
-  }
-}
-
-class LunarCalendarApp extends StatelessWidget {
-  const LunarCalendarApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Lunar Calendar",
       initialRoute: '/',
       routes: {
         router.defaultRoute: (context) => const HomeScreen(),
         router.settingScreen: (context) => const SettingScreen()
       },
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }
