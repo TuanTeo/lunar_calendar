@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lunar_calendar/router.dart' as router;
+import 'package:lunar_calendar/widgets/calendar/calendar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,10 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: Center(
-          child: Text(AppLocalizations.of(context).demoData((30 / 4).toString())),
-        ),
+      body: const SafeArea(
+        child: CalendarWidget(),
       ),
     );
   }
