@@ -11,7 +11,11 @@ class TableCalendarCustom<T> extends TableCalendar {
     super.startingDayOfWeek,
     super.availableCalendarFormats,
     super.calendarFormat,
-    super.onFormatChanged
+    super.onFormatChanged,
+    super.onDaySelected,
+    super.currentDay,
+    super.selectedDayPredicate,
+    super.pageJumpingEnabled
   }) : super(focusedDay: focusedDay, firstDay: firstDay, lastDay: lastDay);
 
   @override
