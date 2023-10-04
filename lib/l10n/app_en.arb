@@ -11,5 +11,7 @@
       "example": "Bob"
       }
     }
-  }
+  },
+  "monthCalendarFormat": "Month",
+  "weekCalendarFormat": "Week"
 }

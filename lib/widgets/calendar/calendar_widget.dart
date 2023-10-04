@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../table_calendar_lib/shared/utils.dart';
 import '../../utils/calendar_page_utils.dart';
 import 'table_calendar_customize.dart';
@@ -19,10 +20,8 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   final DateTime _startCalendarDate = DateTime.utc(1900, 1, 1);
   final DateTime _endCalendarDate = DateTime.utc(2100, 12, 31);
   final DateTime _nowDate = DateTime.now();
-  final _availableCalendarFormats = const {
-    CalendarFormat.month: 'Month',
-    CalendarFormat.week: 'Week',
-  };
+
+  Map<CalendarFormat, String>? _availableCalendarFormats;
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _selectedDay = DateTime.now();
@@ -73,13 +72,18 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    _availableCalendarFormats ??= {
+        CalendarFormat.month: AppLocalizations.of(context).monthCalendarFormat,
+        CalendarFormat.week: AppLocalizations.of(context).weekCalendarFormat,
+      };
+
     return TableCalendarCustom(
       firstDay: _startCalendarDate,
       lastDay: _endCalendarDate,
       focusedDay: _selectedDay,
       locale: 'vi',
       startingDayOfWeek: StartingDayOfWeek.monday,
-      availableCalendarFormats: _availableCalendarFormats,
+      availableCalendarFormats: _availableCalendarFormats!,
       calendarFormat: _calendarFormat,
       onFormatChanged: _onFormatChanged,
       onDaySelected: _onDaySelected,
