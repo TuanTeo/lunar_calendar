@@ -15,7 +15,8 @@ class TableCalendarCustom<T> extends TableCalendar {
     super.onDaySelected,
     super.currentDay,
     super.selectedDayPredicate,
-    super.pageJumpingEnabled
+    super.pageJumpingEnabled,
+    super.onCalendarCreated,
   }) : super(focusedDay: focusedDay, firstDay: firstDay, lastDay: lastDay);
 
   @override

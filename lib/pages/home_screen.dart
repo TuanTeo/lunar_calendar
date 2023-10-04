@@ -13,7 +13,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  DateTime _today = DateTime.now();
 
+  void _onTodayPress() {
+    setState(() {
+      _today = DateTime.now();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.calendar_month),
             tooltip: AppLocalizations.of(context).todayActionDescription,
             onPressed: () {
+              _onTodayPress();
             },
           ),
           IconButton(
@@ -36,8 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: const SafeArea(
-        child: CalendarWidget(),
+      body: SafeArea(
+        child: CalendarWidget(today: _today),
       ),
     );
   }
