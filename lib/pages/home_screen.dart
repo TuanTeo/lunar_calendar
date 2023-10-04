@@ -28,6 +28,18 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(AppLocalizations.of(context).homeTitle),
         actions: [
           IconButton(
+            icon: Stack(alignment: Alignment.center,children: [
+              const Icon(Icons.calendar_today),
+              Padding(
+                  padding: const EdgeInsets.only(bottom: 0, left: 0, right: 0, top: 6),
+                  child: Text("${_today.day}", style: const TextStyle(fontSize: 10),))
+            ],),
+            tooltip: AppLocalizations.of(context).todayActionDescription,
+            onPressed: () {
+              _onTodayPress();
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.calendar_month),
             tooltip: AppLocalizations.of(context).todayActionDescription,
             onPressed: () {
