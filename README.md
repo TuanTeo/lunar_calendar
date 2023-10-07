@@ -15,6 +15,12 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Feature
+### 1. Xem, chọn ngày trên lich
+### 2. Hiển thị ngày âm lịch
+### 3. Hiển thị ngày lễ trên lịch
+### 4. Thêm sự kiện cá nhân vào lịch
+### 5. Thông báo sự kiện, ngày lễ
 
 ## TODO Bug tồn
 ### 1. Sau khi reset to today -> selected week chưa focus đúng dòng chứa ngày hiện tại
