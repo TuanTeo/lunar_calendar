@@ -8,6 +8,14 @@ enum StartingDayOfWeekCustom {
   sunday,
 }
 
+/// Tính initial page number theo CalendarFormat.month
+int getMonthCount(DateTime first, DateTime last) {
+  final yearDif = last.year - first.year;
+  final monthDif = last.month - first.month;
+
+  return yearDif * 12 + monthDif;
+}
+
 /// Tính initial page number theo CalendarFormat.week
 int getWeekCount(DateTime first, DateTime last) {
   return last.difference(_firstDayOfWeek(first)).inDays ~/ 7;

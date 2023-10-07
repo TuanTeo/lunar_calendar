@@ -24,7 +24,7 @@ class CalendarWidget extends StatefulWidget {
 }
 
 class _CalendarWidgetState extends State<CalendarWidget> {
-  late final int _initialWeekPage;
+  int _selectedPage = -1;
 
   Map<CalendarFormat, String>? _availableCalendarFormats;
 
@@ -50,7 +50,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   }
 
   bool _selectedDayPredicate(DateTime day) {
-    // Todo Lỗi TH chưa load xong đã chọn ngày khác
     return isSameDay(_selectedDay, day);
   }
 
@@ -59,16 +58,15 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _initialWeekPage = getWeekCount(widget.startCalendarDate, _selectedDay);
-  }
-
-  @override
   void didUpdateWidget(covariant CalendarWidget oldWidget) {
+    /// Calculate page of selected day
+    _selectedPage = _isMonthPageFormat()
+        ? getMonthCount(widget.startCalendarDate, widget.today)
+        : getWeekCount(widget.startCalendarDate, widget.today);
+
     /// Scroll to initialPage
     _pageController?.animateToPage(
-        _isMonthPageFormat() ? _pageController!.initialPage : _initialWeekPage,
+        _selectedPage,
         duration: const Duration(milliseconds: 200),
         curve: Curves.linear);
 
