@@ -27,7 +27,7 @@ DateTime _firstDayOfWeek(DateTime week) {
 }
 
 int _getDaysBefore(DateTime firstDay) {
-  return (firstDay.weekday + 7 - _getWeekdayNumber(StartingDayOfWeekCustom.monday)) % 7;
+  return (firstDay.weekday + 7 - _getWeekdayNumber(StartingDayOfWeekCustom.sunday)) % 7;
 }
 
 int _getWeekdayNumber(StartingDayOfWeekCustom weekday) {
