@@ -7,9 +7,17 @@ import '../../utils/calendar_page_utils.dart';
 import 'table_calendar_customize.dart';
 
 class CalendarWidget extends StatefulWidget {
-  final DateTime? today;
+  final DateTime today;
+  final DateTime startCalendarDate;
+  final DateTime endCalendarDate;
+  final Function onSelectedDayChange;
 
-  const CalendarWidget({super.key, this.today});
+  const CalendarWidget(
+      {super.key,
+      required this.today,
+      required this.startCalendarDate,
+      required this.endCalendarDate,
+      required this.onSelectedDayChange});
 
   @override
   State<CalendarWidget> createState() => _CalendarWidgetState();
@@ -17,15 +25,16 @@ class CalendarWidget extends StatefulWidget {
 
 class _CalendarWidgetState extends State<CalendarWidget> {
   late final int _initialWeekPage;
-  final DateTime _startCalendarDate = DateTime.utc(1900, 1, 1);
-  final DateTime _endCalendarDate = DateTime.utc(2100, 12, 31);
-  final DateTime _nowDate = DateTime.now();
 
   Map<CalendarFormat, String>? _availableCalendarFormats;
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _selectedDay = DateTime.now();
   PageController? _pageController;
+
+  DateTime getSelectedDate() {
+    return _selectedDay;
+  }
 
   void _onFormatChanged(CalendarFormat format) {
     setState(() {
@@ -36,6 +45,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     setState(() {
       _selectedDay = selectedDay;
+      widget.onSelectedDayChange(selectedDay);
     });
   }
 
@@ -51,7 +61,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   @override
   void initState() {
     super.initState();
-    _initialWeekPage = getWeekCount(_startCalendarDate, _selectedDay);
+    _initialWeekPage = getWeekCount(widget.startCalendarDate, _selectedDay);
   }
 
   @override
@@ -64,7 +74,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
     /// Select today
     setState(() {
-      _selectedDay = widget.today ?? _nowDate;
+      _selectedDay = widget.today;
     });
 
     super.didUpdateWidget(oldWidget);
@@ -78,8 +88,8 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       };
 
     return TableCalendarCustom(
-      firstDay: _startCalendarDate,
-      lastDay: _endCalendarDate,
+      firstDay: widget.startCalendarDate,
+      lastDay: widget.endCalendarDate,
       focusedDay: _selectedDay,
       locale: 'vi',
       startingDayOfWeek: StartingDayOfWeek.monday,

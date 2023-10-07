@@ -13,13 +13,35 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final DateTime _startCalendarDate = DateTime.utc(1900, 1, 1);
+  final DateTime _endCalendarDate = DateTime.utc(2100, 12, 31);
+  final DateTime _today = DateTime.now();
 
-  DateTime _today = DateTime.now();
+  DateTime _selectedDay = DateTime.now();
 
   void _onTodayPress() {
     setState(() {
-      _today = DateTime.now();
+      _selectedDay = DateTime.now();
     });
+  }
+
+  Future<void> _showDatePickerDialog(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: _selectedDay,
+        firstDate: _startCalendarDate,
+        lastDate: _endCalendarDate);
+
+    if (picked != null) {
+      setState(() {
+        _selectedDay = picked;
+      });
+    }
+  }
+
+
+  void _onSelectedDateChange(DateTime selectedDate) {
+    _selectedDay = selectedDate;
   }
 
   @override
@@ -39,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.calendar_month),
             tooltip: AppLocalizations.of(context).todayActionDescription,
             onPressed: () {
-              _onTodayPress();
+              _showDatePickerDialog(context);
             },
           ),
           IconButton(
@@ -52,7 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: SafeArea(
-        child: CalendarWidget(today: _today),
+        child: CalendarWidget(
+          today: _selectedDay,
+          startCalendarDate: _startCalendarDate,
+          endCalendarDate: _endCalendarDate,
+          onSelectedDayChange: _onSelectedDateChange
+        ),
       ),
     );
   }
