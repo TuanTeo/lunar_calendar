@@ -18,7 +18,8 @@ int getMonthCount(DateTime first, DateTime last) {
 
 /// Tính initial page number theo CalendarFormat.week
 int getWeekCount(DateTime first, DateTime last) {
-  return last.difference(_firstDayOfWeek(first)).inDays ~/ 7;
+  var selectedDate = DateTime(last.year, last.month, last.day);
+  return selectedDate.difference(_firstDayOfWeek(first)).inDays ~/ 7;
 }
 
 DateTime _firstDayOfWeek(DateTime week) {
