@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lunar_calendar/router.dart' as router;
+import 'package:lunar_calendar/themes/dimens.dart';
 import 'package:lunar_calendar/widgets/calendar/calendar_widget.dart';
+import 'package:lunar_calendar/widgets/day_info/solar_day_info.dart';
 import 'package:lunar_calendar/widgets/today_icon/today_icon.dart';
+
+import '../themes/colors/light_colors.dart';
+import '../widgets/card_widget.dart';
+import '../widgets/day_info/lunar_day_info.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -41,7 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
   void _onSelectedDateChange(DateTime selectedDate) {
-    _selectedDay = selectedDate;
+    setState(() {
+      _selectedDay = selectedDate;
+    });
   }
 
   @override
@@ -74,11 +82,42 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: SafeArea(
-        child: CalendarWidget(
-          today: _selectedDay,
-          startCalendarDate: _startCalendarDate,
-          endCalendarDate: _endCalendarDate,
-          onSelectedDayChange: _onSelectedDateChange
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 700),
+          color: ColorConstants.backgroundColor,
+          child: Padding(
+            padding: const EdgeInsets.all(Dimens.smallPadding),
+            child: Column(
+              children: [
+                CardWidget(
+                  child: CalendarWidget(
+                    today: _selectedDay,
+                    startCalendarDate: _startCalendarDate,
+                    endCalendarDate: _endCalendarDate,
+                    onSelectedDayChange: _onSelectedDateChange
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(right: 0, left: 0, bottom: Dimens.smallPadding, top: Dimens.smallPadding),
+                    child: CardWidget(
+                        child: Row(
+                          children: [
+                            Expanded(
+                                child: SolarDayInfo(solarDay: _selectedDay)),
+                            Expanded(
+                                child: LunarDayInfo(lunarDay: _selectedDay)),
+                          ],
+                        ))
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
+                    child: CardWidget(
+                      child: const Placeholder(fallbackHeight: 200,),
+                    )
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
