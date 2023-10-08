@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../themes/dimens.dart';
+import '../../vietnamese_calendar/vietnamese_calendar.dart';
 
 class LunarDayInfo extends StatelessWidget {
   final DateTime lunarDay;
@@ -9,6 +10,9 @@ class LunarDayInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var vietnameseCalendar = VietnameseCalendar(lunarDay);
+    var strVietnameseDay = vietnameseCalendar.vietnameseDate.toString();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -20,7 +24,7 @@ class LunarDayInfo extends StatelessWidget {
         ),
         const SizedBox(height: Dimens.smallPadding),
         Text(
-          "${lunarDay.day}",
+          "${strVietnameseDay/*lunarDay.day*/}",
           style: const TextStyle(
               fontSize: Dimens.largestTextSize, fontWeight: FontWeight.bold),
         ),
