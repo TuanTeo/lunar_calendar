@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:lunar_calendar/viet_calendar/can_chi.dart';
+
 class VietCalendar {
   static const double PI = pi;
 
@@ -193,5 +195,15 @@ class VietCalendar {
     }
     int monthStart = getNewMoonDay(k + off, timeZone);
     return jdToDate(monthStart + lunarDay - 1);
+  }
+
+  static String yearCan(int year) {
+    var i = (year + 6) % 10;
+    return CanChi.can.elementAt(i);
+  }
+
+  static String yearChi(int year) {
+    var i = (year + 8) % 12;
+    return CanChi.chi.elementAt(i);
   }
 }

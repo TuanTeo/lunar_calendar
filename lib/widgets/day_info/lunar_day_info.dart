@@ -39,7 +39,7 @@ class LunarDayInfo extends StatelessWidget {
         ),
         const SizedBox(height: Dimens.smallPadding),
         Text(
-          "Tháng ${l[1].toString()} ${(l[3] == 0) ? "" : "nhuận "}năm ${l[2].toString()}",
+          "Tháng ${l[1].toString()} ${(l[3] == 0) ? "" : "nhuận "}năm ${"${VietCalendar.yearCan(l[2])} ${VietCalendar.yearChi(l[2])}"}",
           style: const TextStyle(fontSize: Dimens.mediumTextSize),
         ),
         const SizedBox(height: Dimens.smallPadding),
