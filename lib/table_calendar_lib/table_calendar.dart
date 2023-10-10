@@ -619,7 +619,7 @@ class TableCalendarState<T> extends State<TableCalendar<T>> {
         final isDisabled = _isDayDisabled(day);
         final isWeekend = _isWeekend(day, weekendDays: widget.weekendDays);
 
-        Widget content = CellContent(
+        Widget content = createDayCellContent(
           key: ValueKey('CellContent-${day.year}-${day.month}-${day.day}'),
           day: day,
           focusedDay: focusedDay,
@@ -776,5 +776,43 @@ class TableCalendarState<T> extends State<TableCalendar<T>> {
     List<int> weekendDays = const [DateTime.saturday, DateTime.sunday],
   }) {
     return weekendDays.contains(day.weekday);
+  }
+
+  Widget createDayCellContent(
+      {required ValueKey<String> key,
+      required DateTime day,
+      required DateTime focusedDay,
+      required CalendarStyle calendarStyle,
+      required CalendarBuilders<T> calendarBuilders,
+      required bool isTodayHighlighted,
+      required bool isToday,
+      required bool isSelected,
+      required bool isRangeStart,
+      required bool isRangeEnd,
+      required bool isWithinRange,
+      required bool isOutside,
+      required bool isDisabled,
+      required bool isWeekend,
+      required bool isHoliday,
+      required locale}) {
+
+    return CellContent(
+      key: key,
+      day: day,
+      focusedDay: focusedDay,
+      calendarStyle: calendarStyle,
+      calendarBuilders: calendarBuilders,
+      isTodayHighlighted: isTodayHighlighted,
+      isToday: isToday,
+      isSelected: isSelected,
+      isRangeStart: isRangeStart,
+      isRangeEnd: isRangeEnd,
+      isWithinRange: isWithinRange,
+      isOutside: isOutside,
+      isDisabled: isDisabled,
+      isWeekend: isWeekend,
+      isHoliday: isHoliday,
+      locale: locale,
+    );
   }
 }

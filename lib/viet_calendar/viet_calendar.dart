@@ -4,6 +4,7 @@ import 'package:lunar_calendar/viet_calendar/can_chi.dart';
 
 class VietCalendar {
   static const double PI = pi;
+  static const double TIME_ZONE = 7.0;
 
   static int jdFromDate(int dd, int mm, int yy) {
     int a = (14 - mm) ~/ 12;
