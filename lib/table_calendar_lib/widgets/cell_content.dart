@@ -177,33 +177,33 @@ class CellContent extends StatelessWidget {
     return Text(solarDay, style: calendarStyle.selectedTextStyle);
   }
 
-  Widget isRangeStartDay(String text) {
-    return Text(text, style: calendarStyle.rangeStartTextStyle);
+  Widget isRangeStartDay(String solarDay) {
+    return Text(solarDay, style: calendarStyle.rangeStartTextStyle);
   }
 
-  Widget isRangeEndDay(String text) {
-    return Text(text, style: calendarStyle.rangeEndTextStyle);
+  Widget isRangeEndDay(String solarDay) {
+    return Text(solarDay, style: calendarStyle.rangeEndTextStyle);
   }
 
-  Widget isTodayHighlightedDay(String text) {
-    return Text(text, style: calendarStyle.todayTextStyle);
+  Widget isTodayHighlightedDay(String solarDay) {
+    return Text(solarDay, style: calendarStyle.todayTextStyle);
   }
 
-  Widget isHolidayDay(String text) {
-    return Text(text, style: calendarStyle.holidayTextStyle);
+  Widget isHolidayDay(String solarDay) {
+    return Text(solarDay, style: calendarStyle.holidayTextStyle);
   }
 
-  Widget isWithinRangeDay(String text) {
-    return Text(text, style: calendarStyle.withinRangeTextStyle);
+  Widget isWithinRangeDay(String solarDay) {
+    return Text(solarDay, style: calendarStyle.withinRangeTextStyle);
   }
 
-  Widget isOutsideDay(String text) {
-    return Text(text, style: calendarStyle.outsideTextStyle);
+  Widget isOutsideDay(String solarDay) {
+    return Text(solarDay, style: calendarStyle.outsideTextStyle);
   }
 
-  Widget isNormalDay(String text) {
+  Widget isNormalDay(String solarDay) {
     return Text(
-        text,
+        solarDay,
         style: isWeekend
             ? calendarStyle.weekendTextStyle
             : calendarStyle.defaultTextStyle

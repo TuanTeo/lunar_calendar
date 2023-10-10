@@ -52,53 +52,125 @@ class DayCellInfo extends CellContent {
     return Column(
       children: [
         Text(solarDay, style: calendarStyle.disabledTextStyle),
-        Text(lunarDay, style: calendarStyle.disabledTextStyle.copyWith(fontSize: Dimens.smallTextSize)),
+        Text(lunarDay,
+            style: calendarStyle.disabledTextStyle.copyWith(
+                fontSize: Dimens.lunarDayCalendar)),
       ],
     );
   }
 
   @override
   Widget isSelectedDay(String solarDay) {
-    return Text(solarDay, style: calendarStyle.selectedTextStyle);
+    var lunarDay = _displayLunarDay();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(solarDay, style: calendarStyle.selectedTextStyle),
+        Text(lunarDay,
+            style: calendarStyle.disabledTextStyle
+                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+      ],
+    );
   }
 
   @override
-  Widget isRangeStartDay(String text) {
-    return Text(text, style: calendarStyle.rangeStartTextStyle);
+  Widget isRangeStartDay(String solarDay) {
+    var lunarDay = _displayLunarDay();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(solarDay, style: calendarStyle.rangeStartTextStyle),
+        Text(lunarDay,
+            style: calendarStyle.disabledTextStyle
+                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+      ],
+    );
   }
 
   @override
-  Widget isRangeEndDay(String text) {
-    return Text(text, style: calendarStyle.rangeEndTextStyle);
+  Widget isRangeEndDay(String solarDay) {
+    var lunarDay = _displayLunarDay();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(solarDay, style: calendarStyle.rangeEndTextStyle),
+        Text(lunarDay,
+            style: calendarStyle.disabledTextStyle
+                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+      ],
+    );
   }
 
   @override
-  Widget isTodayHighlightedDay(String text) {
-    return Text(text, style: calendarStyle.todayTextStyle);
+  Widget isTodayHighlightedDay(String solarDay) {
+    var lunarDay = _displayLunarDay();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(solarDay, style: calendarStyle.todayTextStyle),
+        Text(lunarDay,
+            style: calendarStyle.disabledTextStyle
+                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+      ],
+    );
   }
 
   @override
-  Widget isHolidayDay(String text) {
-    return Text(text, style: calendarStyle.holidayTextStyle);
+  Widget isHolidayDay(String solarDay) {
+    var lunarDay = _displayLunarDay();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(solarDay, style: calendarStyle.holidayTextStyle),
+        Text(lunarDay,
+            style: calendarStyle.disabledTextStyle
+                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+      ],
+    );
   }
 
   @override
-  Widget isWithinRangeDay(String text) {
-    return Text(text, style: calendarStyle.withinRangeTextStyle);
+  Widget isWithinRangeDay(String solarDay) {
+    var lunarDay = _displayLunarDay();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(solarDay, style: calendarStyle.withinRangeTextStyle),
+        Text(lunarDay,
+            style: calendarStyle.disabledTextStyle
+                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+      ],
+    );
   }
 
   @override
-  Widget isOutsideDay(String text) {
-    return Text(text, style: calendarStyle.outsideTextStyle);
+  Widget isOutsideDay(String solarDay) {
+    var lunarDay = _displayLunarDay();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(solarDay, style: calendarStyle.outsideTextStyle),
+        Text(lunarDay,
+            style: calendarStyle.disabledTextStyle
+                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+      ],
+    );
   }
 
   @override
-  Widget isNormalDay(String text) {
-    return Text(
-        text,
-        style: isWeekend
-            ? calendarStyle.weekendTextStyle
-            : calendarStyle.defaultTextStyle
+  Widget isNormalDay(String solarDay) {
+    var lunarDay = _displayLunarDay();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(solarDay,
+            style: isWeekend
+                ? calendarStyle.weekendTextStyle
+                : calendarStyle.defaultTextStyle),
+        Text(lunarDay,
+            style: calendarStyle.disabledTextStyle
+                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+      ],
     );
   }
 }
