@@ -4,6 +4,7 @@ import 'package:lunar_calendar/widgets/calendar/day_cell_content.dart';
 import '../../table_calendar_lib/customization/calendar_builders.dart';
 import '../../table_calendar_lib/customization/calendar_style.dart';
 import '../../table_calendar_lib/table_calendar.dart';
+import 'calendar_style_custom.dart';
 
 class TableCalendarCustom<T> extends TableCalendar {
 
@@ -66,7 +67,7 @@ class _TableCalendarCustomState<T> extends TableCalendarState<T> {
       key: key,
       day: day,
       focusedDay: focusedDay,
-      calendarStyle: calendarStyle,
+      calendarStyle: const CalendarStyleCustom(),
       calendarBuilders: calendarBuilders,
       isTodayHighlighted: isTodayHighlighted,
       isToday: isToday,

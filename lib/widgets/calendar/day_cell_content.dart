@@ -50,6 +50,7 @@ class DayCellInfo extends CellContent {
   Widget isDisabledDay(String solarDay) {
     var lunarDay = _displayLunarDay();
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(solarDay, style: calendarStyle.disabledTextStyle),
         Text(lunarDay,
