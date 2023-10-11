@@ -207,4 +207,32 @@ class VietCalendar {
     var i = (year + 8) % 12;
     return CanChi.chi.elementAt(i);
   }
+
+  static String monthCan(int year, int month) {
+    var i = (year * 12 + month + 3) % 10;
+    return CanChi.can.elementAt(i);
+  }
+
+  static String monthChi(int year, int month) {
+    var i = (month + 1) % 12;
+    return CanChi.chi.elementAt(i);
+  }
+
+  static int dayCanIndex(int day, int month, int year) {
+    var jd = jdFromDate(day, month, year);
+    return (jd + 9) % 10;
+  }
+
+  static String dayCan(int day, int month, int year) {
+    return CanChi.can.elementAt(dayCanIndex(day, month, year));
+  }
+
+  static int dayChiIndex(int day, int month, int year) {
+    var jd = jdFromDate(day, month, year);
+    return (jd + 1) % 12;
+  }
+
+  static String dayChi(int day, int month, int year) {
+    return CanChi.chi.elementAt(dayChiIndex(day, month, year));
+  }
 }

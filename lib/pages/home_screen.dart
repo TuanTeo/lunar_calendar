@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lunar_calendar/router.dart' as router;
 import 'package:lunar_calendar/themes/dimens.dart';
 import 'package:lunar_calendar/widgets/calendar/calendar_widget.dart';
+import 'package:lunar_calendar/widgets/day_entertainment_info/day_entertainment_info.dart';
 import 'package:lunar_calendar/widgets/day_info/solar_day_info.dart';
 import 'package:lunar_calendar/widgets/today_icon/today_icon.dart';
 
@@ -110,11 +111,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         ))
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
+                    padding: const EdgeInsets.only(
+                        right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
                     child: CardWidget(
-                      child: const Placeholder(fallbackHeight: 200,),
-                    )
-                ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: DayEntertainmentInfo(day: _selectedDay)),
+                        ],
+                      ),
+                    )),
               ],
             ),
           ),
