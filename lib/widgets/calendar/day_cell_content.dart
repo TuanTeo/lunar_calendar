@@ -3,6 +3,7 @@ import 'package:lunar_calendar/table_calendar_lib/widgets/cell_content.dart';
 import 'package:lunar_calendar/themes/dimens.dart';
 
 import '../../viet_calendar/viet_calendar.dart';
+import 'calendar_style_custom.dart';
 
 class DayCellInfo extends CellContent {
 
@@ -54,7 +55,7 @@ class DayCellInfo extends CellContent {
       children: [
         Text(solarDay, style: calendarStyle.disabledTextStyle),
         Text(lunarDay,
-            style: calendarStyle.disabledTextStyle.copyWith(
+            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle.copyWith(
                 fontSize: Dimens.lunarDayCalendar)),
       ],
     );
@@ -68,7 +69,7 @@ class DayCellInfo extends CellContent {
       children: [
         Text(solarDay, style: calendarStyle.selectedTextStyle),
         Text(lunarDay,
-            style: calendarStyle.disabledTextStyle
+            style: (calendarStyle as CalendarStyleCustom).selectedLunarTextStyle
                 .copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
@@ -82,7 +83,7 @@ class DayCellInfo extends CellContent {
       children: [
         Text(solarDay, style: calendarStyle.rangeStartTextStyle),
         Text(lunarDay,
-            style: calendarStyle.disabledTextStyle
+            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
                 .copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
@@ -96,7 +97,7 @@ class DayCellInfo extends CellContent {
       children: [
         Text(solarDay, style: calendarStyle.rangeEndTextStyle),
         Text(lunarDay,
-            style: calendarStyle.disabledTextStyle
+            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
                 .copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
@@ -110,7 +111,7 @@ class DayCellInfo extends CellContent {
       children: [
         Text(solarDay, style: calendarStyle.todayTextStyle),
         Text(lunarDay,
-            style: calendarStyle.disabledTextStyle
+            style: (calendarStyle as CalendarStyleCustom).todayLunarTextStyle
                 .copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
@@ -124,7 +125,7 @@ class DayCellInfo extends CellContent {
       children: [
         Text(solarDay, style: calendarStyle.holidayTextStyle),
         Text(lunarDay,
-            style: calendarStyle.disabledTextStyle
+            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
                 .copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
@@ -138,7 +139,7 @@ class DayCellInfo extends CellContent {
       children: [
         Text(solarDay, style: calendarStyle.withinRangeTextStyle),
         Text(lunarDay,
-            style: calendarStyle.disabledTextStyle
+            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
                 .copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
@@ -152,7 +153,7 @@ class DayCellInfo extends CellContent {
       children: [
         Text(solarDay, style: calendarStyle.outsideTextStyle),
         Text(lunarDay,
-            style: calendarStyle.disabledTextStyle
+            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
                 .copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
@@ -169,7 +170,7 @@ class DayCellInfo extends CellContent {
                 ? calendarStyle.weekendTextStyle
                 : calendarStyle.defaultTextStyle),
         Text(lunarDay,
-            style: calendarStyle.disabledTextStyle
+            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
                 .copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
