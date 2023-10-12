@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:lunar_calendar/widgets/calendar/day_cell_content.dart';
+import 'package:lunar_calendar/widgets/table_calendar_lib_custom/cell_content_customize.dart';
 import 'package:simple_gesture_detector/simple_gesture_detector.dart';
 
 import '../../table_calendar_lib/customization/calendar_builders.dart';
 import '../../table_calendar_lib/customization/calendar_style.dart';
 import '../../table_calendar_lib/shared/utils.dart';
 import '../../table_calendar_lib/table_calendar.dart';
-import 'calendar_style_custom.dart';
+import 'calendar_style_customize.dart';
 import 'table_calendar_base_customize.dart';
 
 class TableCalendarCustom<T> extends TableCalendar {
@@ -66,7 +66,7 @@ class _TableCalendarCustomState<T> extends TableCalendarState<T> {
         required bool isHoliday,
         required locale}) {
 
-    return DayCellInfo(
+    return CellContentCustom(
       key: key,
       day: day,
       focusedDay: focusedDay,

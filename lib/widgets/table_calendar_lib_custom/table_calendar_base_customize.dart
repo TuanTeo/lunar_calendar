@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lunar_calendar/table_calendar_lib/table_calendar_base.dart';
 import 'package:lunar_calendar/themes/dimens.dart';
-import 'package:lunar_calendar/widgets/calendar/calendar_core_customize.dart';
+import 'package:lunar_calendar/widgets/table_calendar_lib_custom/calendar_core_customize.dart';
 import 'package:simple_gesture_detector/simple_gesture_detector.dart';
 
 import '../../table_calendar_lib/shared/utils.dart';

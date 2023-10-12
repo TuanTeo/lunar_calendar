@@ -3,11 +3,11 @@ import 'package:lunar_calendar/table_calendar_lib/widgets/cell_content.dart';
 import 'package:lunar_calendar/themes/dimens.dart';
 
 import '../../viet_calendar/viet_calendar.dart';
-import 'calendar_style_custom.dart';
+import 'calendar_style_customize.dart';
 
-class DayCellInfo extends CellContent {
+class CellContentCustom extends CellContent {
 
-  const DayCellInfo(
+  const CellContentCustom(
       {super.key,
       required super.day,
       required super.focusedDay,

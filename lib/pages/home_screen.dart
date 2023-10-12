@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lunar_calendar/router.dart' as router;
 import 'package:lunar_calendar/themes/dimens.dart';
-import 'package:lunar_calendar/widgets/calendar/calendar_widget.dart';
+import 'package:lunar_calendar/widgets/table_calendar_lib_custom/calendar_widget.dart';
 import 'package:lunar_calendar/widgets/day_entertainment_info/day_entertainment_info.dart';
 import 'package:lunar_calendar/widgets/day_info/solar_day_info.dart';
 import 'package:lunar_calendar/widgets/today_icon/today_icon.dart';
