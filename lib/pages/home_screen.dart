@@ -101,12 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                     padding: const EdgeInsets.only(right: 0, left: 0, bottom: Dimens.smallPadding, top: Dimens.smallPadding),
                     child: CardWidget(
+                        minHeight: 120,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Expanded(
-                                child: SolarDayInfo(solarDay: _selectedDay)),
-                            Expanded(
-                                child: LunarDayInfo(lunarDay: _selectedDay)),
+                            SolarDayInfo(solarDay: _selectedDay),
+                            LunarDayInfo(lunarDay: _selectedDay),
                           ],
                         ))
                 ),
@@ -114,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(
                         right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
                     child: CardWidget(
+                      minHeight: 200,
                       child: Row(
                         children: [
                           Expanded(
