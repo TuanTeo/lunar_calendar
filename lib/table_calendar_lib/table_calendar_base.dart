@@ -80,10 +80,10 @@ class TableCalendarBase extends StatefulWidget {
         super(key: key);
 
   @override
-  _TableCalendarBaseState createState() => _TableCalendarBaseState();
+  TableCalendarBaseState createState() => TableCalendarBaseState();
 }
 
-class _TableCalendarBaseState extends State<TableCalendarBase> {
+class TableCalendarBaseState extends State<TableCalendarBase> {
   late final ValueNotifier<double> _pageHeight;
   late final PageController _pageController;
   late DateTime _focusedDay;
@@ -205,7 +205,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
                 ),
               );
             },
-            child: CalendarCore(
+            child: createCalendarCore(
               constraints: constraints,
               pageController: _pageController,
               scrollPhysics: _canScrollHorizontally
@@ -261,7 +261,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
   double _getPageHeight(int rowCount) {
     final tablePaddingHeight = widget.tablePadding?.vertical ?? 0.0;
     final dowHeight = widget.dowVisible ? widget.dowHeight! : 0.0;
-    return dowHeight + rowCount * widget.rowHeight + tablePaddingHeight;
+    return dowHeight + rowCount * widget.rowHeight + tablePaddingHeight + customPadding();
   }
 
   int _calculateFocusedPage(
@@ -344,5 +344,59 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
         ? DateTime.utc(month.year, month.month + 1, 1)
         : DateTime.utc(month.year + 1, 1, 1);
     return date.subtract(const Duration(days: 1));
+  }
+
+  double customPadding() {
+    return 0.0;
+  }
+
+  Widget createCalendarCore(
+      {required BoxConstraints constraints,
+      required PageController pageController,
+      required ScrollPhysics scrollPhysics,
+      required DateTime firstDay,
+      required DateTime lastDay,
+      required StartingDayOfWeek startingDayOfWeek,
+      required CalendarFormat calendarFormat,
+      required int previousIndex,
+      required DateTime focusedDay,
+      required bool sixWeekMonthsEnforced,
+      required bool dowVisible,
+      double? dowHeight,
+      required double rowHeight,
+      required bool weekNumbersVisible,
+      DayBuilder? weekNumberBuilder,
+      Decoration? dowDecoration,
+      Decoration? rowDecoration,
+      TableBorder? tableBorder,
+      EdgeInsets? tablePadding,
+      required Null Function(dynamic index, dynamic focusedMonth) onPageChanged,
+      DayBuilder? dowBuilder,
+      required FocusedDayBuilder dayBuilder}
+      ) {
+    return CalendarCore(
+      constraints: constraints,
+      pageController: pageController,
+      scrollPhysics: scrollPhysics,
+      firstDay: firstDay,
+      lastDay: lastDay,
+      startingDayOfWeek: startingDayOfWeek,
+      calendarFormat: calendarFormat,
+      previousIndex: previousIndex,
+      focusedDay: focusedDay,
+      sixWeekMonthsEnforced: sixWeekMonthsEnforced,
+      dowVisible: dowVisible,
+      dowHeight: dowHeight,
+      rowHeight: rowHeight,
+      weekNumbersVisible: weekNumbersVisible,
+      weekNumberBuilder: weekNumberBuilder,
+      dowDecoration: dowDecoration,
+      rowDecoration: rowDecoration,
+      tableBorder: tableBorder,
+      tablePadding: tablePadding,
+      onPageChanged: onPageChanged,
+      dowBuilder: dowBuilder,
+      dayBuilder: dayBuilder,
+    );
   }
 }

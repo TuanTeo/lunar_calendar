@@ -7,5 +7,6 @@ class Dimens {
   static const double lunarDayCalendar = 12;
 
   /// Padding
-  static const double smallPadding = 8;
+  static const double smallPadding = 8.0;
+  static const double mediumPadding = 16.0;
 }

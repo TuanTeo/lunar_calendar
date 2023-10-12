@@ -46,7 +46,9 @@ class CalendarPage extends StatelessWidget {
               border: tableBorder,
               children: [
                 if (dowVisible) _buildDaysOfWeek(context),
+                paddingTableRow(),
                 ..._buildCalendarDays(context),
+                paddingTableRow(),
               ],
             ),
           ),
@@ -92,5 +94,15 @@ class CalendarPage extends StatelessWidget {
               ),
             ))
         .toList();
+  }
+
+  TableRow paddingTableRow() {
+    return TableRow(
+      decoration: dowDecoration,
+      children: List.generate(
+        7,
+        (index) => const SizedBox(height: 0.0),
+      ).toList(),
+    );
   }
 }

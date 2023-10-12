@@ -478,7 +478,7 @@ class TableCalendarState<T> extends State<TableCalendar<T>> {
           ),
         Flexible(
           flex: widget.shouldFillViewport ? 1 : 0,
-          child: TableCalendarBase(
+          child: createTableCalendarBase(
             onCalendarCreated: (pageController) {
               _pageController = pageController;
               widget.onCalendarCreated?.call(pageController);
@@ -813,6 +813,68 @@ class TableCalendarState<T> extends State<TableCalendar<T>> {
       isWeekend: isWeekend,
       isHoliday: isHoliday,
       locale: locale,
+    );
+  }
+
+  createTableCalendarBase(
+      {required Null Function(dynamic pageController) onCalendarCreated,
+      required DateTime focusedDay,
+      required CalendarFormat calendarFormat,
+      required AvailableGestures availableGestures,
+      required DateTime firstDay,
+      required DateTime lastDay,
+      required StartingDayOfWeek startingDayOfWeek,
+      required Decoration dowDecoration,
+      required Decoration rowDecoration,
+      required TableBorder tableBorder,
+      required EdgeInsets tablePadding,
+      required bool dowVisible,
+      required double dowHeight,
+      required double rowHeight,
+      required Duration formatAnimationDuration,
+      required Curve formatAnimationCurve,
+      required bool pageAnimationEnabled,
+      required Duration pageAnimationDuration,
+      required Curve pageAnimationCurve,
+      required Map<CalendarFormat, String> availableCalendarFormats,
+      required SimpleSwipeConfig simpleSwipeConfig,
+      required bool sixWeekMonthsEnforced,
+      required void Function(SwipeDirection direction) onVerticalSwipe,
+      required Null Function(dynamic focusedDay) onPageChanged,
+      required bool weekNumbersVisible,
+      required Widget Function(BuildContext context, DateTime day) weekNumberBuilder,
+      required Widget Function(BuildContext context, DateTime day) dowBuilder,
+      required GestureDetector Function(dynamic context, dynamic day, dynamic focusedMonth) dayBuilder
+      }) {
+    return TableCalendarBase(
+      onCalendarCreated: onCalendarCreated,
+      focusedDay: focusedDay,
+      calendarFormat: calendarFormat,
+      availableGestures: availableGestures,
+      firstDay: firstDay,
+      lastDay: lastDay,
+      startingDayOfWeek: startingDayOfWeek,
+      dowDecoration: dowDecoration,
+      rowDecoration: rowDecoration,
+      tableBorder: tableBorder,
+      tablePadding: tablePadding,
+      dowVisible: dowVisible,
+      dowHeight: dowHeight,
+      rowHeight: rowHeight,
+      formatAnimationDuration: formatAnimationDuration,
+      formatAnimationCurve: formatAnimationCurve,
+      pageAnimationEnabled: pageAnimationEnabled,
+      pageAnimationDuration: pageAnimationDuration,
+      pageAnimationCurve: pageAnimationCurve,
+      availableCalendarFormats: availableCalendarFormats,
+      simpleSwipeConfig: simpleSwipeConfig,
+      sixWeekMonthsEnforced: sixWeekMonthsEnforced,
+      onVerticalSwipe: onVerticalSwipe,
+      onPageChanged: onPageChanged,
+      weekNumbersVisible: weekNumbersVisible,
+      weekNumberBuilder: weekNumberBuilder,
+      dowBuilder: dowBuilder,
+      dayBuilder: dayBuilder,
     );
   }
 }

@@ -77,7 +77,7 @@ class CalendarCore extends StatelessWidget {
                 _getRowCount(calendarFormat, baseDay)
             : null;
 
-        return CalendarPage(
+        return createCalendarPage(
           visibleDays: visibleDays,
           dowVisible: dowVisible,
           dowDecoration: dowDecoration,
@@ -316,5 +316,33 @@ class CalendarCore extends StatelessWidget {
     }
 
     return daysAfter;
+  }
+
+  Widget createCalendarPage(
+      {required List<DateTime> visibleDays,
+      required bool dowVisible,
+      Decoration? dowDecoration,
+      Decoration? rowDecoration,
+      TableBorder? tableBorder,
+      EdgeInsets? tablePadding,
+      required SizedBox Function(dynamic context, dynamic day) dowBuilder,
+      required SizedBox Function(dynamic context, dynamic day) dayBuilder,
+      double? dowHeight,
+      required bool weekNumberVisible,
+      required SizedBox Function(dynamic context, dynamic day)
+          weekNumberBuilder}) {
+    return CalendarPage(
+      visibleDays: visibleDays,
+      dowVisible: dowVisible,
+      dowDecoration: dowDecoration,
+      rowDecoration: rowDecoration,
+      tableBorder: tableBorder,
+      tablePadding: tablePadding,
+      dowBuilder: dowBuilder,
+      dayBuilder: dayBuilder,
+      dowHeight: dowHeight,
+      weekNumberVisible: weekNumberVisible,
+      weekNumberBuilder: weekNumberBuilder,
+    );
   }
 }
