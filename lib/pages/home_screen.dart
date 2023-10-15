@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -53,6 +55,52 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  Widget _bodyHomeScreen() {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 700),
+      color: ColorConstants.backgroundColor,
+      child: Padding(
+        padding: const EdgeInsets.all(Dimens.smallPadding),
+        child: Column(
+          children: [
+            CardWidget(
+              child: CalendarWidget(
+                  today: _selectedDay,
+                  startCalendarDate: _startCalendarDate,
+                  endCalendarDate: _endCalendarDate,
+                  onSelectedDayChange: _onSelectedDateChange
+              ),
+            ),
+            Padding(
+                padding: const EdgeInsets.only(right: 0, left: 0, bottom: Dimens.smallPadding, top: Dimens.smallPadding),
+                child: CardWidget(
+                    minHeight: 120,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SolarDayInfo(solarDay: _selectedDay),
+                        LunarDayInfo(lunarDay: _selectedDay),
+                      ],
+                    ))
+            ),
+            Padding(
+                padding: const EdgeInsets.only(
+                    right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
+                child: CardWidget(
+                  minHeight: 200,
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: DayEntertainmentInfo(day: _selectedDay)),
+                    ],
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,49 +131,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: SafeArea(
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 700),
-          color: ColorConstants.backgroundColor,
-          child: Padding(
-            padding: const EdgeInsets.all(Dimens.smallPadding),
-            child: Column(
-              children: [
-                CardWidget(
-                  child: CalendarWidget(
-                    today: _selectedDay,
-                    startCalendarDate: _startCalendarDate,
-                    endCalendarDate: _endCalendarDate,
-                    onSelectedDayChange: _onSelectedDateChange
-                  ),
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(right: 0, left: 0, bottom: Dimens.smallPadding, top: Dimens.smallPadding),
-                    child: CardWidget(
-                        minHeight: 120,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SolarDayInfo(solarDay: _selectedDay),
-                            LunarDayInfo(lunarDay: _selectedDay),
-                          ],
-                        ))
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(
-                        right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
-                    child: CardWidget(
-                      minHeight: 200,
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: DayEntertainmentInfo(day: _selectedDay)),
-                        ],
-                      ),
-                    )),
-              ],
-            ),
-          ),
-        ),
+        child: !kIsWeb
+            ? _bodyHomeScreen()
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _bodyHomeScreen(),
+                ],
+              ),
       ),
     );
   }
