@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart' as sql;
 
 import 'event_model.dart';
+import '../event/event_default_data.dart';
 
 class EventDBHelper {
   /// Database
@@ -25,6 +26,11 @@ class EventDBHelper {
         $IS_LUNAR_COLUMN BOOLEAN NOT NULL DEFAULT false
       )
       """);
+
+    /* Add default events data */
+    for (var event in listDefaultEvent) {
+      addDefaultData(database, event);
+    }
   }
 
   static Future<sql.Database> db() async {
@@ -35,6 +41,15 @@ class EventDBHelper {
         await createTable(database);
       },
     );
+  }
+
+  static Future<void> addDefaultData(sql.Database database, Event event) async {
+    await database.execute("""INSERT INTO $EVENT_TABLE_NAME(
+        "$EVENT_NAME_COLUMN",
+        "$EVENT_DATE_COLUMN",
+        "$IS_LUNAR_COLUMN"
+      ) VALUES ("${event.name}", "${event.date}", "${event.isLunar}")
+      """);
   }
 
   // Create new event item
