@@ -14,6 +14,8 @@
   },
   "monthCalendarFormat": "Month",
   "weekCalendarFormat": "Week",
+  "eventTitle": "Events",
+  "eventEmpty": "<<Empty>>",
   "tet_am_lich": "Tet",
   "ram_thang_rieng": "Full Moon in January",
   "tet_duong_lich": "New Year",

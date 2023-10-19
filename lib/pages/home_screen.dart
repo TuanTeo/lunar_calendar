@@ -12,6 +12,7 @@ import 'package:lunar_calendar/widgets/today_icon/today_icon.dart';
 
 import '../themes/colors/light_colors.dart';
 import '../widgets/card_widget.dart';
+import '../widgets/day_event_info/day_event_info.dart';
 import '../widgets/day_info/lunar_day_info.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -82,6 +83,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         LunarDayInfo(lunarDay: _selectedDay),
                       ],
                     ))
+            ),
+            Padding(
+                padding: const EdgeInsets.only(
+                    right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
+                child: CardWidget(
+                  child: Row(
+                    children: [
+                      Expanded(child: DayEventInfo(day: _selectedDay)),
+                    ],
+                  ),
+                )
             ),
             Padding(
                 padding: const EdgeInsets.only(
