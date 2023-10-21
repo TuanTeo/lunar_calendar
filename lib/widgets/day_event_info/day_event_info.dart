@@ -21,12 +21,12 @@ class DayEventInfo extends StatelessWidget {
         return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           if (solarEvent.isNotEmpty)
             Text(
-              solarEvent,
+              AppLocalizations.of(context).event(solarEvent),
               style: const TextStyle(fontWeight: FontWeight.w200),
             ),
           if (lunarEvent.isNotEmpty)
             Text(
-              lunarEvent,
+              AppLocalizations.of(context).event(lunarEvent),
               style: const TextStyle(fontWeight: FontWeight.w200),
             )
         ]);

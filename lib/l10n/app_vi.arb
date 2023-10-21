@@ -19,5 +19,15 @@
   "tet_am_lich": "Tết",
   "ram_thang_rieng": "Rằm tháng Giêng",
   "tet_duong_lich": "Tết dương lịch",
-  "quoc_khanh_vn": "Quốc khánh"
+  "quoc_khanh_vn": "Quốc khánh",
+
+  "event": "{event, select, tet_am_lich{Tết} ram_thang_rieng{Rằm tháng Giêng} tet_duong_lich{Tết dương lịch} quoc_khanh_vn{Quốc khánh} other{<<Trống>>}}",
+  "@event": {
+    "description": "A gendered message",
+    "placeholders": {
+      "event": {
+        "type": "String"
+      }
+    }
+  }
 }

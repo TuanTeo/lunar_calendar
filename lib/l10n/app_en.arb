@@ -19,5 +19,15 @@
   "tet_am_lich": "Tet",
   "ram_thang_rieng": "Full Moon in January",
   "tet_duong_lich": "New Year",
-  "quoc_khanh_vn": "Vietnam's National Day"
+  "quoc_khanh_vn": "Vietnam's National Day",
+
+  "event": "{event, select, ram_thang_rieng{Full Moon in January} tet_am_lich{Tet} tet_duong_lich{New Year} other{<<Empty>>}}",
+  "@event": {
+    "description": "Name of events",
+    "placeholders": {
+      "event": {
+        "type": "String"
+      }
+    }
+  }
 }
