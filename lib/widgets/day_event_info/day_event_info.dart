@@ -22,18 +22,18 @@ class DayEventInfo extends StatelessWidget {
           if (solarEvent.isNotEmpty)
             Text(
               AppLocalizations.of(context).event(solarEvent),
-              style: const TextStyle(fontWeight: FontWeight.w200),
+              style: const TextStyle(fontWeight: FontWeight.w300),
             ),
           if (lunarEvent.isNotEmpty)
             Text(
               AppLocalizations.of(context).event(lunarEvent),
-              style: const TextStyle(fontWeight: FontWeight.w200),
+              style: const TextStyle(fontWeight: FontWeight.w300),
             )
         ]);
       } else {
         return Text(
           AppLocalizations.of(context).eventEmpty,
-          style: const TextStyle(fontWeight: FontWeight.w200),
+          style: const TextStyle(fontWeight: FontWeight.w300),
         );
       }
     }
@@ -45,7 +45,10 @@ class DayEventInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: Dimens.smallPadding),
-          Text(AppLocalizations.of(context).eventTitle),
+          Text(
+            AppLocalizations.of(context).eventTitle,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: Dimens.smallPadding),
           createEventWidget(),
           const SizedBox(height: Dimens.smallPadding),

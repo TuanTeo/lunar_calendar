@@ -20,7 +20,7 @@ class CardWidget extends Container {
         image: (null != bgImage)
             ? DecorationImage(
           image: AssetImage(bgImage!),
-          fit: BoxFit.cover,)
+          fit: BoxFit.fill,)
             : null
       ),
       child: child,

@@ -101,4 +101,5 @@ flutter:
 
   assets:
      - lib/assets/images/bg_day.jpg
-     - lib/assets/images/OLEXS90.jpg
+     - lib/assets/images/bg_day_info.jpg
+     - lib/assets/images/bg_day_event.jpg

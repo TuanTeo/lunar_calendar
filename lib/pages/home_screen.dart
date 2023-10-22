@@ -129,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             top: Dimens.smallPadding),
                         child: CardWidget(
                             minHeight: 120,
-                            bgImage: 'lib/assets/images/bg_day.jpg',
+                            bgImage: 'lib/assets/images/bg_day_info.jpg',
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -141,6 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.only(
                             right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
                         child: CardWidget(
+                          bgImage: 'lib/assets/images/bg_day_event2.jpg',
                           child: Row(
                             children: [
                               Expanded(child: DayEventInfo(day: _selectedDay)),
@@ -152,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
                         child: CardWidget(
                           minHeight: 200,
-                          bgImage: 'lib/assets/images/OLEXS90.jpg',
+                          bgImage: 'lib/assets/images/bg_day_event2.jpg',
                           child: Row(
                             children: [
                               Expanded(
