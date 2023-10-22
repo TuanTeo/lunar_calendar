@@ -186,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.calendar_month),
-            tooltip: AppLocalizations.of(context).todayActionDescription,
+            tooltip: AppLocalizations.of(context).chooseDate,
             onPressed: () {
               _showDatePickerDialog(context);
             },

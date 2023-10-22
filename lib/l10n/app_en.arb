@@ -2,16 +2,8 @@
   "homeTitle": "Home",
   "settingTitle": "Setting",
   "todayActionDescription": "Today",
+  "chooseDate": "Choose date",
   "settingActionDescription": "Setting",
-  "demoData": "Data + {value}",
-  "@demoData": {
-    "placeholders": {
-      "value": {
-        "type": "String",
-      "example": "Bob"
-      }
-    }
-  },
   "monthCalendarFormat": "Month",
   "weekCalendarFormat": "Week",
   "eventTitle": "Events",

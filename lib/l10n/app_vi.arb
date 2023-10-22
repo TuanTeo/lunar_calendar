@@ -1,17 +1,9 @@
 {
-  "homeTitle": "Trang chủ",
+  "homeTitle": "Lịch âm",
   "settingTitle": "Cài đặt",
   "todayActionDescription": "Hôm nay",
+  "chooseDate": "Chọn ngày",
   "settingActionDescription": "Cài đặt",
-  "demoData": "Data + {value}",
-  "@demoData": {
-    "placeholders": {
-      "value": {
-        "type": "String",
-        "example": "Bob"
-      }
-    }
-  },
   "monthCalendarFormat": "Tháng",
   "weekCalendarFormat": "Tuần",
   "eventTitle": "Sự kiện",
