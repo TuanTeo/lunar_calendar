@@ -98,3 +98,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  assets:
+     - lib/assets/images/bg_day.jpg
+     - lib/assets/images/OLEXS90.jpg

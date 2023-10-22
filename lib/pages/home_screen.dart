@@ -129,6 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             top: Dimens.smallPadding),
                         child: CardWidget(
                             minHeight: 120,
+                            bgImage: 'lib/assets/images/bg_day.jpg',
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -151,6 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
                         child: CardWidget(
                           minHeight: 200,
+                          bgImage: 'lib/assets/images/OLEXS90.jpg',
                           child: Row(
                             children: [
                               Expanded(
