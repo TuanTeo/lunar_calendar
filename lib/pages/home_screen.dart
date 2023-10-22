@@ -107,10 +107,13 @@ class _HomeScreenState extends State<HomeScreen> {
               child: NotificationListener<ScrollNotification>(
                 onNotification: (scrollNotification) {
                   if (_scrollController.position.userScrollDirection ==
-                      ScrollDirection.reverse) {
+                          ScrollDirection.reverse
+                      && _scrollController.position.pixels == 0) {
+                    // debugPrint('down _scrollController.position.pixels ${_scrollController.position.pixels}');
                     _onScrollDownListener();
                   } else if (_scrollController.position.userScrollDirection ==
-                      ScrollDirection.forward) {
+                          ScrollDirection.forward
+                      && _scrollController.position.pixels == 0) {
                     _onScrollUpListener();
                   }
                   return true;
