@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lunar_calendar/router.dart' as router;
@@ -10,6 +10,7 @@ import 'package:lunar_calendar/widgets/day_entertainment_info/day_entertainment_
 import 'package:lunar_calendar/widgets/day_info/solar_day_info.dart';
 import 'package:lunar_calendar/widgets/today_icon/today_icon.dart';
 
+import '../table_calendar_lib/shared/utils.dart';
 import '../themes/colors/light_colors.dart';
 import '../widgets/card_widget.dart';
 import '../widgets/day_event_info/day_event_info.dart';
@@ -28,6 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final DateTime _today = DateTime.now();
 
   DateTime _selectedDay = DateTime.now();
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+
+  final ScrollController _scrollController = ScrollController();
 
   void _onTodayPress() {
     setState(() {
@@ -56,6 +60,31 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void _onFormatChanged(CalendarFormat format) {
+    setState(() {
+      debugPrint("HomeScreenState _onFormatChanged $format");
+      _calendarFormat = format;
+    });
+  }
+
+  void _onScrollDownListener() {
+    if (_calendarFormat == CalendarFormat.month) {
+      setState(() {
+        debugPrint("HomeScreenState _onFormatChanged CalendarFormat.month");
+        _calendarFormat = CalendarFormat.week;
+      });
+    }
+  }
+
+  void _onScrollUpListener() {
+    if (_calendarFormat == CalendarFormat.week) {
+      setState(() {
+        debugPrint("HomeScreenState _onFormatChanged CalendarFormat.week");
+        _calendarFormat = CalendarFormat.month;
+      });
+    }
+  }
+
   Widget _bodyHomeScreen() {
     return Container(
       constraints: const BoxConstraints(maxWidth: 700),
@@ -63,50 +92,73 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Padding(
         padding: const EdgeInsets.all(Dimens.smallPadding),
         child: Column(
-          children: [
+          children: <Widget>[
             CardWidget(
               child: CalendarWidget(
                   today: _selectedDay,
                   startCalendarDate: _startCalendarDate,
                   endCalendarDate: _endCalendarDate,
-                  onSelectedDayChange: _onSelectedDateChange
+                  onSelectedDayChange: _onSelectedDateChange,
+                  calendarFormat: _calendarFormat,
+                  onFormatChanged: _onFormatChanged,
               ),
             ),
-            Padding(
-                padding: const EdgeInsets.only(right: 0, left: 0, bottom: Dimens.smallPadding, top: Dimens.smallPadding),
-                child: CardWidget(
-                    minHeight: 120,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SolarDayInfo(solarDay: _selectedDay),
-                        LunarDayInfo(lunarDay: _selectedDay),
-                      ],
-                    ))
+            Expanded(
+              child: NotificationListener<ScrollNotification>(
+                onNotification: (scrollNotification) {
+                  if (_scrollController.position.userScrollDirection ==
+                      ScrollDirection.reverse) {
+                    _onScrollDownListener();
+                  } else if (_scrollController.position.userScrollDirection ==
+                      ScrollDirection.forward) {
+                    _onScrollUpListener();
+                  }
+                  return true;
+                },
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Column(children: [
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            right: 0,
+                            left: 0,
+                            bottom: Dimens.smallPadding,
+                            top: Dimens.smallPadding),
+                        child: CardWidget(
+                            minHeight: 120,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SolarDayInfo(solarDay: _selectedDay),
+                                LunarDayInfo(lunarDay: _selectedDay),
+                              ],
+                            ))),
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
+                        child: CardWidget(
+                          child: Row(
+                            children: [
+                              Expanded(child: DayEventInfo(day: _selectedDay)),
+                            ],
+                          ),
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.only(
+                            right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
+                        child: CardWidget(
+                          minHeight: 200,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: DayEntertainmentInfo(day: _selectedDay)),
+                            ],
+                          ),
+                        )),
+                  ]),
+                ),
+              ),
             ),
-            Padding(
-                padding: const EdgeInsets.only(
-                    right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
-                child: CardWidget(
-                  child: Row(
-                    children: [
-                      Expanded(child: DayEventInfo(day: _selectedDay)),
-                    ],
-                  ),
-                )
-            ),
-            Padding(
-                padding: const EdgeInsets.only(
-                    right: 0, left: 0, bottom: Dimens.smallPadding, top: 0),
-                child: CardWidget(
-                  minHeight: 200,
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: DayEntertainmentInfo(day: _selectedDay)),
-                    ],
-                  ),
-                )),
           ],
         ),
       ),

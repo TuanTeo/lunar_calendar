@@ -11,13 +11,18 @@ class CalendarWidget extends StatefulWidget {
   final DateTime startCalendarDate;
   final DateTime endCalendarDate;
   final Function onSelectedDayChange;
+  final CalendarFormat calendarFormat;
+  final Function onFormatChanged;
 
   const CalendarWidget(
       {super.key,
       required this.today,
       required this.startCalendarDate,
       required this.endCalendarDate,
-      required this.onSelectedDayChange});
+      required this.onSelectedDayChange,
+      required this.calendarFormat,
+      required this.onFormatChanged
+      });
 
   @override
   State<CalendarWidget> createState() => _CalendarWidgetState();
@@ -28,18 +33,11 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
   Map<CalendarFormat, String>? _availableCalendarFormats;
 
-  CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _selectedDay = DateTime.now();
   PageController? _pageController;
 
-  DateTime getSelectedDate() {
-    return _selectedDay;
-  }
-
   void _onFormatChanged(CalendarFormat format) {
-    setState(() {
-      _calendarFormat = format;
-    });
+    widget.onFormatChanged(format);
   }
 
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
@@ -54,7 +52,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   }
 
   bool _isMonthPageFormat() {
-    return _calendarFormat == CalendarFormat.month;
+    return widget.calendarFormat == CalendarFormat.month;
   }
 
   @override
@@ -92,7 +90,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       locale: 'vi',
       startingDayOfWeek: StartingDayOfWeek.monday,
       availableCalendarFormats: _availableCalendarFormats!,
-      calendarFormat: _calendarFormat,
+      calendarFormat: widget.calendarFormat,
       onFormatChanged: _onFormatChanged,
       onDaySelected: _onDaySelected,
       selectedDayPredicate: _selectedDayPredicate,
