@@ -12,23 +12,36 @@ class DayEventInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var isEventDay = EventUtils.isEventDay(day);
-    var isEvent = isEventDay[0] != 0;
-    var solarEvent = EventUtils.eventDayName(isEventDay[1]);
-    var lunarEvent = EventUtils.eventDayName(isEventDay[2]);
+    var isEvent = isEventDay[0][0] != 0;
+    var solarEvents = isEventDay[1];
+    var lunarEvents = isEventDay[2];
+
+    List<Widget> solarEventItems = List.empty();
+    List<Widget> lunarEventItems = List.empty();
+
+    if (isEvent) {
+      solarEventItems = List<Widget>.generate(
+        solarEvents.length,
+            (i) => Text(
+          AppLocalizations.of(context).event(EventUtils.eventDayName(solarEvents[i])),
+          style: const TextStyle(fontWeight: FontWeight.w300),
+        ),
+      );
+
+      lunarEventItems = List<Widget>.generate(
+        lunarEvents.length,
+            (i) => Text(
+          AppLocalizations.of(context).event(EventUtils.eventDayName(lunarEvents[i])),
+          style: const TextStyle(fontWeight: FontWeight.w300),
+        ),
+      );
+    }
 
     Widget createEventWidget() {
       if (isEvent) {
         return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          if (solarEvent.isNotEmpty)
-            Text(
-              AppLocalizations.of(context).event(solarEvent),
-              style: const TextStyle(fontWeight: FontWeight.w300),
-            ),
-          if (lunarEvent.isNotEmpty)
-            Text(
-              AppLocalizations.of(context).event(lunarEvent),
-              style: const TextStyle(fontWeight: FontWeight.w300),
-            )
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: solarEventItems,),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: lunarEventItems,),
         ]);
       } else {
         return Text(

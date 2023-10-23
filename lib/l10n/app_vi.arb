@@ -13,7 +13,7 @@
   "tet_duong_lich": "Tết dương lịch",
   "quoc_khanh_vn": "Quốc khánh",
 
-  "event": "{event, select, tet_am_lich{Tết} ram_thang_rieng{Rằm tháng Giêng} tet_duong_lich{Tết dương lịch} quoc_khanh_vn{Quốc khánh} other{<<Trống>>}}",
+  "event": "{event, select, tet_am_lich{Tết} ram_thang_rieng{Rằm tháng Giêng (Tết Nguyên Tiêu)} tet_han_thuc{Tết Hàn Thực} gio_to_hung_vuong{Giỗ Tổ Hùng Vương} le_phat_dan{Lễ Phật Đản} tet_doan_ngo{Tết Đoan Ngọ} le_vu_lan{Lễ Vu Lan} tet_trung_thu{Tết Trung thu} ong_cong_ong_tao{Tết ông Công ông Táo} tet_duong_lich{Tết dương lịch} thanh_lap_dang_csvn{Ngày thành lập Đảng Cộng sản Việt Nam (1930)} thay_thuoc_vn{Ngày Thầy thuốc Việt Nam} quoc_te_phu_nu{Ngày Quốc tế Phụ nữ} thanh_lap_doan{Ngày thành lập Đoàn Thanh niên Cộng sản Hồ Chí Minh (1931)} giai_phong_mien_nam{Ngày Giải phóng miền Nam, Thống nhất đất nước (1975)} quoc_te_lao_dong{Quốc tế lao động (1886)} chien_thang_dbp{Ngày chiến thắng Điện Biên Phủ (1954)} ngay_sinh_hcm{Ngày sinh của Chủ tịch Hồ Chí Minh (1890)} thanh_lap_viet_minh{Ngày thành lập Mặt trận Việt Minh (1941)} quoc_te_thieu_nhi{Ngày Quốc tế Thiếu nhi} thuong_binh_liet_si{Ngày Thương binh Liệt sĩ (1947)} quoc_khanh_vn{Ngày quốc khánh (1945)} ngay_mat_hcm{Ngày mất của Chủ tịch Hồ Chí Minh (1969)} phu_nu_vn{Ngày Phụ nữ Việt Nam (1930)} quoc_te_nam_gioi{Ngày Quốc Tế Nam Giới} nha_giao_vn{Ngày Nhà giáo Việt Nam (1982)} thanh_lap_mat_tran_dan_toc_gp_mien_nam_vn{Ngày Thành lập Mặt trận Dân tộc Giải phóng miền Nam Việt Nam (1960)} giang_sinh{Lễ Giáng Sinh} thanh_lap_qdnd_vn{Ngày thành lập Quân đội Nhân dân Việt Nam (1944)} other{<<Trống>>}}",
   "@event": {
     "description": "A gendered message",
     "placeholders": {

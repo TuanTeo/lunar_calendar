@@ -15,7 +15,7 @@ class EventUtils {
       .toList();
 
   /// Return [0] isEvent, [1] isLunarEvent
-  static List<int> isEventDay(DateTime dateTime) {
+  static List<List<int>> isEventDay(DateTime dateTime) {
 
     /* [0] day, [1] month, [2] year, [3] leap */
     var lunarDay = VietCalendar.convertSolar2Lunar(
@@ -24,13 +24,13 @@ class EventUtils {
     var isSolarEvent = _isSolarEventDay(dateTime.day, dateTime.month);
     var isLunarEvent = _isLunarEventDay(lunarDay[0], lunarDay[1], lunarDay[3]);
 
-    var isEvent = (isSolarEvent != -1) || (isLunarEvent != -1);
+    var isEvent = isSolarEvent.isNotEmpty || isLunarEvent.isNotEmpty;
 
     if (kDebugMode) {
       print("tuanteo: $dateTime isEventDay = $isEvent");
     }
 
-    return [isEvent ? 1 : 0, isSolarEvent, isLunarEvent];
+    return [[isEvent ? 1 : 0], isSolarEvent, isLunarEvent];
   }
 
   static String eventDayName(int eventIndex) {
@@ -41,14 +41,30 @@ class EventUtils {
     }
   }
 
-  static int _isSolarEventDay(int solarDay, int solarMonth) {
-    return eventSolarDate.indexOf("$solarDay/$solarMonth", 0);
+  static List<int> _isSolarEventDay(int solarDay, int solarMonth) {
+    List<int> thirdList = [];
+    for (var i = 0; i < eventSolarDate.length; i++) {
+      if (eventSolarDate[i] == "$solarDay/$solarMonth") {
+        thirdList.add(i);
+      }
+    }
+    debugPrint('$thirdList');
+    // return eventSolarDate.indexOf("$solarDay/$solarMonth", 0);
+    return thirdList;
   }
 
-  static int _isLunarEventDay(int lunarDay, int lunarMonth, int isLeap) {
+  static List<int> _isLunarEventDay(int lunarDay, int lunarMonth, int isLeap) {
     if (isLeap == 0) {
-      return eventLunarDate.indexOf("$lunarDay/$lunarMonth", 0);
+      List<int> thirdList = [];
+      for (var i = 0; i < eventLunarDate.length; i++) {
+        if (eventLunarDate[i] == "$lunarDay/$lunarMonth") {
+          thirdList.add(i);
+        }
+      }
+      debugPrint('$thirdList');
+      return thirdList;
+      // return eventLunarDate.indexOf("$lunarDay/$lunarMonth", 0);
     }
-    return -1;
+    return [];
   }
 }
