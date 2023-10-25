@@ -11,15 +11,15 @@ class DayEntertainmentInfo extends StatelessWidget {
   const DayEntertainmentInfo({super.key, required this.day});
 
   String _poem(DateTime day) {
-    var can = VietCalendar.dayCanIndex(day.day, day.month, day.year);
-    var chi = VietCalendar.dayChiIndex(day.day, day.month, day.year);
-    return Poem.poem[1];
+    var jd = VietCalendar.jdFromDate(day.day, day.month, day.year);
+    // return Author.author[Poem.poem.length - 1];
+    return Poem.poem[jd % Poem.poem.length];
   }
 
   String _author(DateTime day) {
-    var can = VietCalendar.dayCanIndex(day.day, day.month, day.year);
-    var chi = VietCalendar.dayChiIndex(day.day, day.month, day.year);
-    return Author.author[1];
+    var jd = VietCalendar.jdFromDate(day.day, day.month, day.year);
+    // return Author.author[Author.author.length - 1];
+    return Author.author[jd % Author.author.length];
   }
 
 
@@ -27,7 +27,7 @@ class DayEntertainmentInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: Dimens.smallPadding),
+        const SizedBox(height: Dimens.mediumPadding),
         Text(_poem(day)),
         const SizedBox(height: Dimens.smallPadding),
         Row(
@@ -37,7 +37,7 @@ class DayEntertainmentInfo extends StatelessWidget {
             Text(_author(day)),
           ],
         ),
-        const SizedBox(height: Dimens.smallPadding),
+        const SizedBox(height: Dimens.largePadding),
       ],
     );
   }
