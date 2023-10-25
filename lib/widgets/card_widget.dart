@@ -5,8 +5,9 @@ import '../themes/colors/light_colors.dart';
 class CardWidget extends Container {
   final double minHeight;
   final String? bgImage;
+  final Color? bgColor;
 
-  CardWidget({super.key, super.child, this.minHeight = 0, this.bgImage});
+  CardWidget({super.key, super.child, this.minHeight = 0, this.bgImage, this.bgColor});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CardWidget extends Container {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: ColorConstants.backgroundCardView,
+        color: bgColor ?? ColorConstants.backgroundCardView,
         image: (null != bgImage)
             ? DecorationImage(
           image: AssetImage(bgImage!),
