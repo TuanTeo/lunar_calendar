@@ -57,14 +57,14 @@ class DayEventInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: Dimens.smallPadding),
+          const SizedBox(height: Dimens.mediumPadding),
           Text(
             AppLocalizations.of(context).eventTitle,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: Dimens.smallPadding),
           createEventWidget(),
-          const SizedBox(height: Dimens.smallPadding),
+          const SizedBox(height: Dimens.mediumPadding),
         ],
       ),
     );
