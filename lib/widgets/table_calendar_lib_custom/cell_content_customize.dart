@@ -25,8 +25,9 @@ class CellContentCustom extends CellContent {
       required super.isWeekend,
       super.locale});
 
-  String _displayLunarDay() {
+  List<String> _displayLunarDay() {
     var result = "";
+    var isFirstDay = "";
     var lunarDate = VietCalendar.convertSolar2Lunar(
         super.day.day, super.day.month, super.day.year, VietCalendar.TIME_ZONE);
 
@@ -35,6 +36,7 @@ class CellContentCustom extends CellContent {
     var isLeap = lunarDate[3];
 
     if (lunarDay == 1) {
+      isFirstDay = 'true';
       if (isLeap == 1) {
         result = "$lunarDay/$lunarMonth N";
       } else {
@@ -44,18 +46,21 @@ class CellContentCustom extends CellContent {
       result = "$lunarDay";
     }
 
-    return result;
+    return [result, isFirstDay];
   }
 
   @override
   Widget isDisabledDay(String solarDay) {
     var lunarDay = _displayLunarDay();
+    var lunarTextStyle = lunarDay[1].isNotEmpty
+        ? (calendarStyle as CalendarStyleCustom).firstLunarDayTextStyle
+        : (calendarStyle as CalendarStyleCustom).normalLunarTextStyle;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(solarDay, style: calendarStyle.disabledTextStyle),
-        Text(lunarDay,
-            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle.copyWith(
+        Text(lunarDay[0],
+            style: lunarTextStyle.copyWith(
                 fontSize: Dimens.lunarDayCalendar)),
       ],
     );
@@ -68,7 +73,7 @@ class CellContentCustom extends CellContent {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(solarDay, style: calendarStyle.selectedTextStyle),
-        Text(lunarDay,
+        Text(lunarDay[0],
             style: (calendarStyle as CalendarStyleCustom).selectedLunarTextStyle
                 .copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
@@ -78,13 +83,15 @@ class CellContentCustom extends CellContent {
   @override
   Widget isRangeStartDay(String solarDay) {
     var lunarDay = _displayLunarDay();
+    var lunarTextStyle = lunarDay[1].isNotEmpty
+        ? (calendarStyle as CalendarStyleCustom).firstLunarDayTextStyle
+        : (calendarStyle as CalendarStyleCustom).normalLunarTextStyle;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(solarDay, style: calendarStyle.rangeStartTextStyle),
-        Text(lunarDay,
-            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
-                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+        Text(lunarDay[0],
+            style:lunarTextStyle.copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
   }
@@ -92,13 +99,15 @@ class CellContentCustom extends CellContent {
   @override
   Widget isRangeEndDay(String solarDay) {
     var lunarDay = _displayLunarDay();
+    var lunarTextStyle = lunarDay[1].isNotEmpty
+        ? (calendarStyle as CalendarStyleCustom).firstLunarDayTextStyle
+        : (calendarStyle as CalendarStyleCustom).normalLunarTextStyle;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(solarDay, style: calendarStyle.rangeEndTextStyle),
-        Text(lunarDay,
-            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
-                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+        Text(lunarDay[0],
+            style: lunarTextStyle.copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
   }
@@ -106,13 +115,15 @@ class CellContentCustom extends CellContent {
   @override
   Widget isTodayHighlightedDay(String solarDay) {
     var lunarDay = _displayLunarDay();
+    var lunarTextStyle = lunarDay[1].isNotEmpty
+        ? (calendarStyle as CalendarStyleCustom).todayFirstLunarDayTextStyle
+        : (calendarStyle as CalendarStyleCustom).todayLunarTextStyle;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(solarDay, style: calendarStyle.todayTextStyle),
-        Text(lunarDay,
-            style: (calendarStyle as CalendarStyleCustom).todayLunarTextStyle
-                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+        Text(lunarDay[0],
+            style: lunarTextStyle.copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
   }
@@ -120,13 +131,15 @@ class CellContentCustom extends CellContent {
   @override
   Widget isHolidayDay(String solarDay) {
     var lunarDay = _displayLunarDay();
+    var lunarTextStyle = lunarDay[1].isNotEmpty
+        ? (calendarStyle as CalendarStyleCustom).firstLunarDayTextStyle
+        : (calendarStyle as CalendarStyleCustom).normalLunarTextStyle;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(solarDay, style: calendarStyle.holidayTextStyle),
-        Text(lunarDay,
-            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
-                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+        Text(lunarDay[0],
+            style: lunarTextStyle.copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
   }
@@ -134,13 +147,15 @@ class CellContentCustom extends CellContent {
   @override
   Widget isWithinRangeDay(String solarDay) {
     var lunarDay = _displayLunarDay();
+    var lunarTextStyle = lunarDay[1].isNotEmpty
+        ? (calendarStyle as CalendarStyleCustom).firstLunarDayTextStyle
+        : (calendarStyle as CalendarStyleCustom).normalLunarTextStyle;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(solarDay, style: calendarStyle.withinRangeTextStyle),
-        Text(lunarDay,
-            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
-                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+        Text(lunarDay[0],
+            style: lunarTextStyle.copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
   }
@@ -148,13 +163,15 @@ class CellContentCustom extends CellContent {
   @override
   Widget isOutsideDay(String solarDay) {
     var lunarDay = _displayLunarDay();
+    var lunarTextStyle = lunarDay[1].isNotEmpty
+        ? (calendarStyle as CalendarStyleCustom).firstLunarDayTextStyle
+        : (calendarStyle as CalendarStyleCustom).normalLunarTextStyle;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(solarDay, style: calendarStyle.outsideTextStyle),
-        Text(lunarDay,
-            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
-                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+        Text(lunarDay[0],
+            style: lunarTextStyle.copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
   }
@@ -162,6 +179,9 @@ class CellContentCustom extends CellContent {
   @override
   Widget isNormalDay(String solarDay) {
     var lunarDay = _displayLunarDay();
+    var lunarTextStyle = lunarDay[1].isNotEmpty
+        ? (calendarStyle as CalendarStyleCustom).firstLunarDayTextStyle
+        : (calendarStyle as CalendarStyleCustom).normalLunarTextStyle;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -169,9 +189,8 @@ class CellContentCustom extends CellContent {
             style: isWeekend
                 ? calendarStyle.weekendTextStyle
                 : calendarStyle.defaultTextStyle),
-        Text(lunarDay,
-            style: (calendarStyle as CalendarStyleCustom).normalLunarTextStyle
-                .copyWith(fontSize: Dimens.lunarDayCalendar)),
+        Text(lunarDay[0],
+            style: lunarTextStyle.copyWith(fontSize: Dimens.lunarDayCalendar)),
       ],
     );
   }

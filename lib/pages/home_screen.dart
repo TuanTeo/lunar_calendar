@@ -195,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.settings),
             tooltip: AppLocalizations.of(context).settingActionDescription,
             onPressed: () {
-              Navigator.pushNamed(context, router.settingScreen);
+              // Navigator.pushNamed(context, router.settingScreen);
             },
           ),
         ],

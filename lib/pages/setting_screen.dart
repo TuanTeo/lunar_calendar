@@ -18,7 +18,7 @@ class _SettingScreenState extends State<SettingScreen> {
       ),
       body: const SafeArea(
         child: Center(
-            child: Text("Setting screen data"),
+            child: Text("Đang phát triển"),
         ),
       ),
     );
