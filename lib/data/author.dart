@@ -7,10 +7,16 @@ class Author {
     "\"Huy Đăng Trương\"",
     "\"Huy Cận\"",
     "\"Nguyễn Bỉnh Khiêm\"",
-    "\"Thơ Việt Nam 1945-1975\"",
+    "\"Huy Cận\"",
     "\"Bùi Thanh Tuấn\"",
     "\"Ca dao\"",
     "\"Trần Quốc Minh\"",
-    "\"Nguồn: Hoàng Ngọc Phách, Kiều Thu Hoạch, Giai thoại văn học Việt Nam\"",
+    "\"Hoàng Trung Thông\"",
+    "\"Nguyễn Bính\"",
+    "\"Nguyễn Bính\"",
+    "\"Thơ Việt Nam 1945-1975\"",
+    "\"Chế Lan Viên\"",
+    "\"Bùi Chí Vinh\"",
+    "\"Chế Lan Viên\"",
   ];
 }
