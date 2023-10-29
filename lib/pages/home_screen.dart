@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lunar_calendar/router.dart' as router;
+import 'package:lunar_calendar/services/notification/notification_service.dart';
 import 'package:lunar_calendar/themes/dimens.dart';
 import 'package:lunar_calendar/widgets/table_calendar_lib_custom/calendar_widget.dart';
 import 'package:lunar_calendar/widgets/day_entertainment_info/day_entertainment_info.dart';
@@ -83,6 +84,14 @@ class _HomeScreenState extends State<HomeScreen> {
         _calendarFormat = CalendarFormat.month;
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    NotificationService().isAndroidPermissionGranted();
+    NotificationService().requestPermissions();
+    NotificationService().initNotification();
   }
 
   Widget _bodyHomeScreen() {
@@ -196,6 +205,9 @@ class _HomeScreenState extends State<HomeScreen> {
             tooltip: AppLocalizations.of(context).settingActionDescription,
             onPressed: () {
               // Navigator.pushNamed(context, router.settingScreen);
+
+              // NotificationService().showNotification(id: 0, title: 'Title', body: 'Body');
+              NotificationService().zonedScheduleNotification();
             },
           ),
         ],
