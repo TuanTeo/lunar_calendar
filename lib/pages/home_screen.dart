@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -11,6 +11,7 @@ import 'package:lunar_calendar/widgets/day_entertainment_info/day_entertainment_
 import 'package:lunar_calendar/widgets/day_info/solar_day_info.dart';
 import 'package:lunar_calendar/widgets/today_icon/today_icon.dart';
 
+import '../services/notification/schedule_event.dart';
 import '../table_calendar_lib/shared/utils.dart';
 import '../themes/colors/light_colors.dart';
 import '../widgets/card_widget.dart';
@@ -203,11 +204,15 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             tooltip: AppLocalizations.of(context).settingActionDescription,
-            onPressed: () {
+            onPressed: () async {
               // Navigator.pushNamed(context, router.settingScreen);
 
               // NotificationService().showNotification(id: 0, title: 'Title', body: 'Body');
-              NotificationService().zonedScheduleNotification();
+              // NotificationService().zonedScheduleNotification();
+
+              // if (kDebugMode) {
+              //   print(ScheduleEvent().nearestEventDay().toString());
+              // }
             },
           ),
         ],

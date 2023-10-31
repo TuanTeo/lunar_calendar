@@ -6,6 +6,10 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:flutter_timezone/flutter_timezone.dart';
 
+const String ANDROID_CHANNEL_ID = "channelId";
+const String ANDROID_CHANNEL_NAME = "channelName";
+const Importance ANDROID_IMPROTANCE = Importance.max;
+
 class NotificationService {
 
   bool _notificationsEnabled = false;
@@ -81,7 +85,11 @@ class NotificationService {
 
   notificationDetails() {
     return const NotificationDetails(
-      android: AndroidNotificationDetails('channelId', 'channelName', importance: Importance.max),
+      android: AndroidNotificationDetails(
+          ANDROID_CHANNEL_ID,
+          ANDROID_CHANNEL_NAME,
+          importance: ANDROID_IMPROTANCE
+      ),
       iOS: DarwinNotificationDetails()
     );
   }
@@ -99,8 +107,10 @@ class NotificationService {
         tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
         const NotificationDetails(
             android: AndroidNotificationDetails(
-                'your channel id', 'your channel name',
-                channelDescription: 'your channel description')),
+                ANDROID_CHANNEL_ID,
+                ANDROID_CHANNEL_NAME,
+                importance: ANDROID_IMPROTANCE)
+        ),
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         uiLocalNotificationDateInterpretation:
         UILocalNotificationDateInterpretation.absoluteTime);
