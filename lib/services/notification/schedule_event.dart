@@ -1,3 +1,5 @@
+import 'package:lunar_calendar/viet_calendar/viet_calendar.dart';
+
 import '../../data/event/event_default_data.dart';
 
 class ScheduleEvent {
@@ -34,7 +36,7 @@ class ScheduleEvent {
       eventMonth = int.parse(eventDate[1]);
 
       /// B2: So sánh nếu ngày hiện tại lớn hơn ngày lễ -> ngày lễ năm sau (+1 năm)
-      if (eventDay <= todayDay && eventMonth <= todayMonth) {
+      if (eventMonth < todayMonth || (eventDay <= todayDay && eventMonth == todayMonth)) {
         tempDate = DateTime(todayYear + 1, eventMonth, eventDay);
       } else {
         tempDate = DateTime(todayYear, eventMonth, eventDay);
@@ -51,7 +53,46 @@ class ScheduleEvent {
       }
     }
 
+    var todayLunarDate;
+    var todayLunarDay;
+    var todayLunarMonth;
+    var todayLunarYear;
 
+    var tempLunarEvent;
+
+    for (var i = 0; i < listEventLunarDate.length; i++) {
+      todayLunarDate ??= VietCalendar.convertSolar2Lunar(
+          todayDay, todayMonth, todayYear, VietCalendar.TIME_ZONE);
+      todayLunarDay = todayLunarDate[0];
+      todayLunarMonth = todayLunarDate[1];
+      todayLunarYear = todayLunarDate[2];
+
+      /// B1: Chuyển các ngày lễ sang dương lịch
+      eventDate = listEventLunarDate[i].split("/");
+      eventDay = int.parse(eventDate[0]);
+      eventMonth = int.parse(eventDate[1]);
+
+      /// B2: So sánh nếu ngày hiện tại lớn hơn ngày lễ -> ngày lễ năm sau (+1 năm)
+      if (eventMonth < todayLunarMonth || (eventDay <= todayLunarDay && eventMonth == todayLunarMonth)) {
+        tempLunarEvent = VietCalendar.convertLunar2Solar(
+            eventDay, eventMonth, todayLunarYear + 1, 0, VietCalendar.TIME_ZONE);
+        tempDate = DateTime(tempLunarEvent[2], tempLunarEvent[1], tempLunarEvent[0]);
+      } else {
+        tempLunarEvent = VietCalendar.convertLunar2Solar(
+            eventDay, eventMonth, todayLunarYear, 0, VietCalendar.TIME_ZONE);
+        tempDate = DateTime(tempLunarEvent[2], tempLunarEvent[1], tempLunarEvent[0]);
+      }
+
+      /// B3: So sánh ngày vừa tính với ngày đã lưu trước đó (nếu rỗng thì gán luôn)
+      nearestDate ??= tempDate;
+      if (nearestDate.year > tempDate.year) {
+        nearestDate = tempDate;
+      } else if (nearestDate.year == tempDate.year && nearestDate.month > tempDate.month) {
+        nearestDate = tempDate;
+      } else if (nearestDate.month == tempDate.month && nearestDate.day > tempDate.day) {
+        nearestDate = tempDate;
+      }
+    }
 
     return nearestDate;
   }
