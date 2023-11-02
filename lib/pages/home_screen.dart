@@ -64,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onFormatChanged(CalendarFormat format) {
     setState(() {
-      debugPrint("HomeScreenState _onFormatChanged $format");
       _calendarFormat = format;
     });
   }
@@ -72,7 +71,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onScrollDownListener() {
     if (_calendarFormat == CalendarFormat.month) {
       setState(() {
-        debugPrint("HomeScreenState _onFormatChanged CalendarFormat.month");
         _calendarFormat = CalendarFormat.week;
       });
     }
@@ -81,7 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onScrollUpListener() {
     if (_calendarFormat == CalendarFormat.week) {
       setState(() {
-        debugPrint("HomeScreenState _onFormatChanged CalendarFormat.week");
         _calendarFormat = CalendarFormat.month;
       });
     }
@@ -119,7 +116,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (_scrollController.position.userScrollDirection ==
                           ScrollDirection.reverse
                       && _scrollController.position.pixels == 0) {
-                    // debugPrint('down _scrollController.position.pixels ${_scrollController.position.pixels}');
                     _onScrollDownListener();
                   } else if (_scrollController.position.userScrollDirection ==
                           ScrollDirection.forward
@@ -211,7 +207,9 @@ class _HomeScreenState extends State<HomeScreen> {
               // NotificationService().zonedScheduleNotification();
 
               // if (kDebugMode) {
-              //   print(ScheduleEvent().nearestEventDay().toString());
+                // print(ScheduleEvent().nearestEventDay().toString());
+                // NotificationService().zonedScheduleNotification(
+                //     context, ScheduleEvent().nearestEventDay());
               // }
             },
           ),

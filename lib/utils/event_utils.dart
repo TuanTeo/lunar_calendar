@@ -26,10 +26,6 @@ class EventUtils {
 
     var isEvent = isSolarEvent.isNotEmpty || isLunarEvent.isNotEmpty;
 
-    if (kDebugMode) {
-      print("tuanteo: $dateTime isEventDay = $isEvent");
-    }
-
     return [[isEvent ? 1 : 0], isSolarEvent, isLunarEvent];
   }
 
@@ -48,7 +44,6 @@ class EventUtils {
         thirdList.add(i);
       }
     }
-    debugPrint('$thirdList');
     // return eventSolarDate.indexOf("$solarDay/$solarMonth", 0);
     return thirdList;
   }
@@ -61,7 +56,6 @@ class EventUtils {
           thirdList.add(i);
         }
       }
-      debugPrint('$thirdList');
       return thirdList;
       // return eventLunarDate.indexOf("$lunarDay/$lunarMonth", 0);
     }

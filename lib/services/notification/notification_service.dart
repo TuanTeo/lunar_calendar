@@ -1,10 +1,17 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:flutter_timezone/flutter_timezone.dart';
+
+import '../../data/event/event_default_data.dart';
+import '../../utils/event_utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../viet_calendar/viet_calendar.dart';
 
 const String ANDROID_CHANNEL_ID = "channelId";
 const String ANDROID_CHANNEL_NAME = "channelName";
@@ -99,12 +106,22 @@ class NotificationService {
     return notificationsPlugin.show(id, title, body, await notificationDetails());
   }
 
-  Future<void> zonedScheduleNotification() async {
+  Future<void> zonedScheduleNotification(BuildContext context, DateTime eventDate) async {
+    var lunarDay = VietCalendar.convertSolar2Lunar(
+        eventDate.day, eventDate.month, eventDate.year, VietCalendar.TIME_ZONE);
+
+    var notificationBody = _getNotificationBody(context, eventDate);
+
+    eventDate = eventDate.subtract(const Duration(days: 1));
+    tz.TZDateTime scheduledDate = tz.TZDateTime(
+        tz.local, eventDate.year, eventDate.month, eventDate.day, 10);
+
     await notificationsPlugin.zonedSchedule(
         0,
-        'scheduled title',
-        'scheduled body',
-        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+        'Ngày mai ${scheduledDate.day}/${scheduledDate.month} (${lunarDay[0]}/${lunarDay[1]} âm lịch)',
+        notificationBody,
+        // tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+        scheduledDate,
         const NotificationDetails(
             android: AndroidNotificationDetails(
                 ANDROID_CHANNEL_ID,
@@ -123,5 +140,26 @@ class NotificationService {
     tz.initializeTimeZones();
     final String timeZoneName = await FlutterTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(timeZoneName));
+  }
+
+  _getNotificationBody(BuildContext context, DateTime eventDate) {
+    var isEventDay = EventUtils.isEventDay(eventDate);
+    var solarEvents = isEventDay[1];
+    var lunarEvents = isEventDay[2];
+
+    var result = '';
+    if (solarEvents.isNotEmpty) {
+      for (var element in solarEvents) {
+        result += '${AppLocalizations.of(context).event(listDefaultEvent[element].name)}\n';
+      }
+    }
+
+    if (lunarEvents.isNotEmpty) {
+      for (var element in lunarEvents) {
+        result += '${AppLocalizations.of(context).event(listDefaultEvent[element].name)}\n';
+      }
+    }
+
+    return result;
   }
 }
