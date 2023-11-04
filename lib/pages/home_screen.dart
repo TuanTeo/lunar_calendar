@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     NotificationService().isAndroidPermissionGranted();
     NotificationService().requestPermissions();
-    NotificationService().initNotification();
+    // NotificationService().initNotification();
   }
 
   Widget _bodyHomeScreen() {
@@ -179,6 +179,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    NotificationService().initNotification(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).homeTitle),

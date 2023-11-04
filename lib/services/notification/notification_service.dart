@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:lunar_calendar/services/notification/schedule_event.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -67,7 +68,7 @@ class NotificationService {
     }
   }
 
-  Future<void> initNotification() async {
+  Future<void> initNotification(BuildContext context) async {
     AndroidInitializationSettings initializationSettingsAndroid =
         const AndroidInitializationSettings('mipmap/ic_launcher');
 
@@ -85,8 +86,9 @@ class NotificationService {
 
     await notificationsPlugin.initialize(
         initializationSettings,
-        onDidReceiveNotificationResponse:
-            (NotificationResponse notificationResponse) async {}
+        onDidReceiveNotificationResponse: (details) {
+          zonedScheduleNotification(context, ScheduleEvent().nearestEventDay());
+        },
     );
   }
 
@@ -112,16 +114,18 @@ class NotificationService {
 
     var notificationBody = _getNotificationBody(context, eventDate);
 
+    var notificationTitle = 'Ngày mai ${eventDate.day}/${eventDate.month} (${lunarDay[0]}/${lunarDay[1]} âm lịch)';
+
     eventDate = eventDate.subtract(const Duration(days: 1));
     tz.TZDateTime scheduledDate = tz.TZDateTime(
         tz.local, eventDate.year, eventDate.month, eventDate.day, 10);
 
     await notificationsPlugin.zonedSchedule(
         0,
-        'Ngày mai ${scheduledDate.day}/${scheduledDate.month} (${lunarDay[0]}/${lunarDay[1]} âm lịch)',
+        notificationTitle,
         notificationBody,
-        // tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
-        scheduledDate,
+        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 10)),
+        // scheduledDate,
         const NotificationDetails(
             android: AndroidNotificationDetails(
                 ANDROID_CHANNEL_ID,

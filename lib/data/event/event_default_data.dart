@@ -10,6 +10,27 @@ const List<Event> listDefaultEvent = [
   Event(name: "le_vu_lan", date: "15/7", isLunar: true),  // Lễ Vu Lan
   Event(name: "tet_trung_thu", date: "15/8", isLunar: true),  // Tết Trung thu
   Event(name: "ong_cong_ong_tao", date: "23/12", isLunar: true),  // Tết ông Công ông Táo
+  Event(name: "mung_1_thang_2", date: "1/2", isLunar: true),    // Mùng 1 tháng 2 âm lịch
+  Event(name: "mung_1_thang_3", date: "1/3", isLunar: true),    // Mùng 1 tháng 3 âm lịch
+  Event(name: "mung_1_thang_4", date: "1/4", isLunar: true),    // Mùng 1 tháng 4 âm lịch
+  Event(name: "mung_1_thang_5", date: "1/5", isLunar: true),    // Mùng 1 tháng 5 âm lịch
+  Event(name: "mung_1_thang_6", date: "1/6", isLunar: true),    // Mùng 1 tháng 6 âm lịch
+  Event(name: "mung_1_thang_7", date: "1/7", isLunar: true),    // Mùng 1 tháng 7 âm lịch
+  Event(name: "mung_1_thang_8", date: "1/8", isLunar: true),    // Mùng 1 tháng 8 âm lịch
+  Event(name: "mung_1_thang_9", date: "1/9", isLunar: true),    // Mùng 1 tháng 9 âm lịch
+  Event(name: "mung_1_thang_10", date: "1/10", isLunar: true),  // Mùng 1 tháng 10 âm lịch
+  Event(name: "mung_1_thang_11", date: "1/11", isLunar: true),  // Mùng 1 tháng 11 âm lịch
+  Event(name: "mung_1_thang_12", date: "1/12", isLunar: true),  // Mùng 1 tháng chạp âm lịch
+  Event(name: "ram_1_thang_2", date: "15/2", isLunar: true),    // Rằm tháng 2 âm lịch
+  Event(name: "ram_1_thang_3", date: "15/3", isLunar: true),    // Rằm tháng 3 âm lịch
+  Event(name: "ram_1_thang_4", date: "15/4", isLunar: true),    // Rằm tháng 4 âm lịch
+  Event(name: "ram_1_thang_5", date: "15/5", isLunar: true),    // Rằm tháng 5 âm lịch
+  Event(name: "ram_1_thang_6", date: "15/6", isLunar: true),    // Rằm tháng 6 âm lịch
+  Event(name: "ram_1_thang_7", date: "15/7", isLunar: true),    // Rằm tháng 7 âm lịch
+  Event(name: "ram_1_thang_9", date: "15/9", isLunar: true),    // Rằm tháng 9 âm lịch
+  Event(name: "ram_1_thang_10", date: "15/10", isLunar: true),  // Rằm tháng 10 âm lịch
+  Event(name: "ram_1_thang_11", date: "15/11", isLunar: true),  // Rằm tháng 11 âm lịch
+  Event(name: "ram_1_thang_12", date: "15/12", isLunar: true),  // Rằm tháng chạp âm lịch
 
   Event(name: "tet_duong_lich", date: "1/1", isLunar: false),
   Event(name: "thanh_lap_dang_csvn", date: "3/2", isLunar: false),  //Ngày thành lập Đảng Cộng sản Việt Nam (1930)
