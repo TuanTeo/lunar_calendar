@@ -89,7 +89,7 @@ class ScheduleEvent {
         nearestDate = tempDate;
       } else if (nearestDate.year == tempDate.year && nearestDate.month > tempDate.month) {
         nearestDate = tempDate;
-      } else if (nearestDate.month == tempDate.month && nearestDate.day > tempDate.day) {
+      } else if (nearestDate.year == tempDate.year && nearestDate.month == tempDate.month && nearestDate.day > tempDate.day) {
         nearestDate = tempDate;
       }
     }
