@@ -15,6 +15,15 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Deploy
+Source: https://www.youtube.com/watch?v=gtcUIQNhgyQ
+Acc: tuanteodev@gmail.com
+1. Open cmd
+2. npm install -g firebase-tools
+3. firebase login
+4. cd Desktop/public
+5. firebase deploy
+
 ## Feature
 1. Xem, chọn ngày trên lich
 2. Hiển thị ngày âm lịch
