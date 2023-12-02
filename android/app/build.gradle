@@ -61,7 +61,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("keystore/tuanteodev.jks")
+            storeFile file("tuanteodev.jks")
             storePassword "Tuanteo0108"
             keyAlias "key0"
             keyPassword "Tuanteo0108"
